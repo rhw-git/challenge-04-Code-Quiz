@@ -1,0 +1,74 @@
+/* global setting starts here */
+/* reset box-sizing */
+* {
+  box-sizing: border-box;
+}
+/* set color and style */
+:root {
+  --primary: #ff44ff;
+  --secondary: #41146b;
+  --tertiary: rgba(156, 154, 154, 0.336);
+  --grey: #333;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+/* global setting ends here */
+/* general style for body section starts here */
+body {
+  color: var(--grey);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-content: center;
+  min-height: 100vh;
+  flex-direction: column;
+}
+/* general style for body section ends here */
+/* header style starts*/
+header {
+  width: 100%;
+  padding: 15px 25px;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-content: center;
+}
+header button {
+  font-size: 0.75rem;
+  padding: 5px 7px;
+  border: 0px;
+  margin: 0px;
+  color: var(--primary);
+}
+.timer {
+  font-size: 0.75rem;
+  padding: 5px 7px;
+}
+/* header style ends*/
+/* main style starts*/
+main {
+  padding: 30px 25px 30px 30%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-content: center;
+}
+h1.question {
+  font-size: 2rem;
+}
+.choices-btn {
+  font-size: 1.4rem;
+  padding: 5px 7px;
+  border-radius: 10px;
+  margin: 3px;
+  background: var(--secondary);
+  color: #fff;
+}
+.choice-validation {
+  width: 30%;
+  font-size: 1.6rem;
+  font-style: italic;
+  padding: 5px 7px;
+  border-top: 1px solid var(--tertiary);
+  color: var(--tertiary);
+}
+/* main style ends*/
