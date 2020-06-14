@@ -14,4 +14,4 @@
 
 ## Contribution 
 
-* Made with ❤  by Ruohan
+* Made by Ruohan
