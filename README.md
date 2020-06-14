@@ -1,17 +1,17 @@
 # Code Quiz
 
+## Purpose
 
-## Purpose 
-* Create a timed quiz on JavaScript fundamentals that stores high scores.
+- Create a timed quiz on JavaScript fundamentals that stores high scores.
 
 ## Built with
-* HTML
-* CSS
-* JavaScript
+
+- HTML
+- CSS
+- JavaScript
 
 ## Website
 
+## Contribution
 
-## Contribution 
-
-* Made by Ruohan
+- Made by ❤ Ruohan
