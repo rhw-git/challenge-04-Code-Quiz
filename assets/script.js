@@ -48,18 +48,21 @@ var displayPrompt = function (qA) {
 // display choices
 var displayChoice = function (qA) {
   for (i = 0; i < qA.numChoice; i++) {
-    debugger;
     var choiceDis = document.createElement("button");
     choiceDis.className = "choices-btn";
     var choice = qA.choicesArr[i];
     choiceDis.textContent = choice.text;
+    choiceDis.setAttribute("choice-id", i);
     answersContainer.appendChild(choiceDis);
   }
 };
 // display quiz
-var displayQuiz = function () {
-  displayPrompt(quiz[0]);
-  displayChoice(quiz[0]);
+displayPrompt(quiz[0]);
+displayChoice(quiz[0]);
+// validate answer
+var answerValidate = function () {
+  debugger;
+  alert("start validation");
 };
 
 // console.log(setQA(qAObj));
@@ -76,5 +79,5 @@ var createQAObjArr = function () {
 };
 
 answersContainer.addEventListener("submit", function () {
-  loopQuestions();
+  answerValidate();
 });
