@@ -2,7 +2,7 @@
 var timer = document.querySelector(".timer");
 var questionsContainer = document.querySelector(".questions-container");
 var answersContainer = document.querySelector(".choices-container");
-var validateAnswer = document.querySelector(".choice-validation");
+var validateAnswer = document.querySelector(".validate-container");
 
 // define fuction to create QA object
 var createQA = function (promptText) {
@@ -23,21 +23,9 @@ var addChoice = function (qA, choiceText, ifCorrect) {
   qA.choicesArr.push(choiceObj);
   qA.numChoice++;
   if (ifCorrect) {
-    qA.correctAnswer = qA.choicesArr.length;
+    qA.correctAnswer = qA.choicesArr.length - 1;
   }
 };
-// create quiz
-var quiz = [];
-var question;
-question = createQA("Commonly use data type do not include:");
-addChoice(question, "A", true);
-addChoice(question, "B", false);
-quiz.push(question);
-question = createQA("In javaScript, arry can be used to store:");
-addChoice(question, "A", true);
-addChoice(question, "B", false);
-quiz.push(question);
-
 // display prompt
 var displayPrompt = function (qA) {
   var questionDis = document.createElement("h1");
@@ -56,28 +44,44 @@ var displayChoice = function (qA) {
     answersContainer.appendChild(choiceDis);
   }
 };
+// validate answer
+var answerValidate = function (qA, event) {
+  event.preventDefault();
+  console.log(event.submitter.getAttribute("choice-id"));
+  var answer = event.submitter.getAttribute("choice-id");
+  debugger;
+  if (parseInt(answer) === qA.correctAnswer) {
+    // display correct
+    var validateCorrect = document.createElement("p");
+    validateCorrect.className = "choice-validation";
+    validateCorrect.textContent = "Correct";
+    console.dir(validateCorrect);
+    validateAnswer.appendChild(validateCorrect);
+  } else {
+    // display incorrect
+    var validateIncorrect = document.createElement("p");
+    validateIncorrect.className = "choice-validation";
+    validateIncorrect.textContent = "Wrong";
+    console.dir(validateIncorrect);
+    validateAnswer.appendChild(validateIncorrect);
+  }
+};
+
+// create quiz
+var quiz = [];
+var question;
+question = createQA("Commonly use data type do not include:");
+addChoice(question, "A", true);
+addChoice(question, "B", false);
+quiz.push(question);
+question = createQA("In javaScript, arry can be used to store:");
+addChoice(question, "A", true);
+addChoice(question, "B", false);
+quiz.push(question);
 // display quiz
 displayPrompt(quiz[0]);
 displayChoice(quiz[0]);
-// validate answer
-var answerValidate = function () {
-  debugger;
-  alert("start validation");
-};
-
-// console.log(setQA(qAObj));
-// create array of qAObj
-var createQAObjArr = function () {
-  var currentQAObj;
-  // create undefined array placeholde for all the created objs
-  var qAObjArr = [];
-  for (var i = 0; i < 10; i++) {
-    currentQAObj = setQA();
-    qAObjArr.push(currentQAObj);
-  }
-  return qAObjArr;
-};
 
 answersContainer.addEventListener("submit", function () {
-  answerValidate();
+  answerValidate(quiz[0], event);
 });
