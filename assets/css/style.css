@@ -39,7 +39,7 @@ header button {
   margin: 0px;
   color: var(--primary);
 }
-.timer {
+.timer-container {
   font-size: 0.75rem;
   padding: 5px 7px;
 }
