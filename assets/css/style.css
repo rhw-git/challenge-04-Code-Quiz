@@ -14,7 +14,6 @@
 /* global setting ends here */
 /* general style for body section starts here */
 body {
-  color: var(--grey);
   margin: 0;
   padding: 0;
   display: flex;
@@ -38,13 +37,15 @@ header button {
   border: 0px;
   margin: 0px;
   color: var(--primary);
+  background-color: white;
 }
-.timer {
+.timer-container {
   font-size: 0.75rem;
   padding: 5px 7px;
 }
 /* header style ends*/
 /* main style starts*/
+/* main style for main-page */
 main {
   padding: 30px 25px 30px 30%;
   display: flex;
@@ -76,5 +77,24 @@ main {
   padding: 5px 7px;
   border-top: 1px solid var(--tertiary);
   color: var(--tertiary);
+}
+/*------------------------------------------------*/
+/* main style for index and end page */
+main.center {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+.center {
+  width: 100%;
+  padding: 0px 15px 30px 15px;
+  border: 0px;
+  margin: 0px;
+  text-align: center;
+}
+button.center {
+  width: max-content;
+  padding: 5px 7px;
 }
 /* main style ends*/

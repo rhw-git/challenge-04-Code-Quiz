@@ -2,7 +2,7 @@
 var timer = document.querySelector(".timer");
 var questionsContainer = document.querySelector(".questions-container");
 var answersContainer = document.querySelector(".choices-container");
-var validateAnswer = document.querySelector(".validate-container");
+var validateAnswerContainer = document.querySelector(".validate-container");
 // define fuction to create QA object
 var createQA = function (promptText) {
   // create undefined objects to contain Q and A elements
@@ -41,6 +41,18 @@ var displayChoice = function (qA) {
     answersContainer.appendChild(choiceDis);
   }
 };
+// start countdown timer
+var countdownTimer = function (timeLeft) {
+  // update every seconds
+  setInterval(function () {
+    if (qCount < quiz.length) {
+      timer.innerHTML = "<p class = 'timer'> Time: " + timeLeft + "</p>";
+      localStorage.setItem("timeLeft", timeLeft);
+      timeLeft = timeLeft - 1;
+    }
+  }, 1000);
+  return;
+};
 // display quize
 var displayQuiz = function (qA) {
   displayPrompt(qA);
@@ -49,35 +61,43 @@ var displayQuiz = function (qA) {
 // validate answer
 var answerValidate = function (qA, event) {
   event.preventDefault();
-  console.log(event.submitter.getAttribute("choice-id"));
   var answer = event.submitter.getAttribute("choice-id");
   if (parseInt(answer) === qA.correctAnswer) {
     // display correct
     var validateCorrect = document.createElement("p");
     validateCorrect.className = "choice-validation";
     validateCorrect.textContent = "Correct";
-    console.dir(validateCorrect);
-    validateAnswer.appendChild(validateCorrect);
+    validateAnswerContainer.appendChild(validateCorrect);
+    console.log(timer.innerHTML);
   } else {
     // display incorrect
     var validateIncorrect = document.createElement("p");
     validateIncorrect.className = "choice-validation";
     validateIncorrect.textContent = "Wrong";
-    console.dir(validateIncorrect);
-    validateAnswer.appendChild(validateIncorrect);
+    validateAnswerContainer.appendChild(validateIncorrect);
+    console.log(timer.innerHTML);
   }
 };
 // remote all children
 var removeAllChildren = function () {
   var parents = document.getElementsByClassName("main-content");
-  console.dir(parents);
   for (var i = 0; i < parents.length; i++) {
     while (parents[i].hasChildNodes()) {
       parents[i].removeChild(parents[i].firstChild);
     }
   }
 };
-
+// start next qA, starting from the second function
+function nextQA(timeGap) {
+  setTimeout(function () {
+    if (qCount < quiz.length) {
+      removeAllChildren();
+      qCount++;
+      displayQuiz(quiz[qCount]);
+    }
+  }, timeGap);
+  return;
+}
 // create quiz
 var quiz = [];
 var question;
@@ -97,6 +117,8 @@ addChoice(question, "B. curly brackets", false);
 addChoice(question, "C. parenthesis", false);
 addChoice(question, "D. squarebrackets", false);
 quiz.push(question);
+// initialize countDown
+countdownTimer(100);
 // create count for question number
 var qCount = 0;
 // initialize quize for the first time
@@ -104,8 +126,6 @@ displayQuiz(quiz[qCount]);
 // create event lisener for quiz
 answersContainer.addEventListener("submit", function () {
   answerValidate(quiz[0], event);
-  removeAllChildren();
-  qCount++;
-  debugger;
-  displayQuiz(quiz[qCount]);
+  nextQA(3 * 1000);
+  return;
 });
