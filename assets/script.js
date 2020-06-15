@@ -49,34 +49,40 @@ var displayQuiz = function (qA) {
 // validate answer
 var answerValidate = function (qA, event) {
   event.preventDefault();
-  console.log(event.submitter.getAttribute("choice-id"));
   var answer = event.submitter.getAttribute("choice-id");
   if (parseInt(answer) === qA.correctAnswer) {
     // display correct
     var validateCorrect = document.createElement("p");
     validateCorrect.className = "choice-validation";
     validateCorrect.textContent = "Correct";
-    console.dir(validateCorrect);
     validateAnswer.appendChild(validateCorrect);
   } else {
     // display incorrect
     var validateIncorrect = document.createElement("p");
     validateIncorrect.className = "choice-validation";
     validateIncorrect.textContent = "Wrong";
-    console.dir(validateIncorrect);
     validateAnswer.appendChild(validateIncorrect);
   }
 };
 // remote all children
 var removeAllChildren = function () {
   var parents = document.getElementsByClassName("main-content");
-  console.dir(parents);
   for (var i = 0; i < parents.length; i++) {
     while (parents[i].hasChildNodes()) {
       parents[i].removeChild(parents[i].firstChild);
     }
   }
 };
+// start next qA, starting from the second function
+function nextQA(timeGap) {
+  setTimeout(function () {
+    if (qCount < quiz.length) {
+      removeAllChildren();
+      qCount++;
+      displayQuiz(quiz[qCount]);
+    }
+  }, timeGap);
+}
 
 // create quiz
 var quiz = [];
@@ -104,8 +110,5 @@ displayQuiz(quiz[qCount]);
 // create event lisener for quiz
 answersContainer.addEventListener("submit", function () {
   answerValidate(quiz[0], event);
-  removeAllChildren();
-  qCount++;
-  debugger;
-  displayQuiz(quiz[qCount]);
+  nextQA(3 * 1000);
 });
