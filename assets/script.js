@@ -3,7 +3,6 @@ var timer = document.querySelector(".timer");
 var questionsContainer = document.querySelector(".questions-container");
 var answersContainer = document.querySelector(".choices-container");
 var validateAnswer = document.querySelector(".validate-container");
-
 // define fuction to create QA object
 var createQA = function (promptText) {
   // create undefined objects to contain Q and A elements
@@ -13,8 +12,6 @@ var createQA = function (promptText) {
     numChoice: 0,
     correctAnswer: 0,
   };
-  // creaet function to append qA correctAnswer
-
   return qA;
 };
 // define function to add choices to the choicesArr of QA object
@@ -44,12 +41,16 @@ var displayChoice = function (qA) {
     answersContainer.appendChild(choiceDis);
   }
 };
+// display quize
+var displayQuiz = function (qA) {
+  displayPrompt(qA);
+  displayChoice(qA);
+};
 // validate answer
 var answerValidate = function (qA, event) {
   event.preventDefault();
   console.log(event.submitter.getAttribute("choice-id"));
   var answer = event.submitter.getAttribute("choice-id");
-  debugger;
   if (parseInt(answer) === qA.correctAnswer) {
     // display correct
     var validateCorrect = document.createElement("p");
@@ -66,6 +67,16 @@ var answerValidate = function (qA, event) {
     validateAnswer.appendChild(validateIncorrect);
   }
 };
+// remote all children
+var removeAllChildren = function () {
+  var parents = document.getElementsByClassName("main-content");
+  console.dir(parents);
+  for (var i = 0; i < parents.length; i++) {
+    while (parents[i].hasChildNodes()) {
+      parents[i].removeChild(parents[i].firstChild);
+    }
+  }
+};
 
 // create quiz
 var quiz = [];
@@ -78,10 +89,23 @@ question = createQA("In javaScript, arry can be used to store:");
 addChoice(question, "A", true);
 addChoice(question, "B", false);
 quiz.push(question);
-// display quiz
-displayPrompt(quiz[0]);
-displayChoice(quiz[0]);
-
+question = createQA(
+  "The condition in an if/else statement is enclosed with _____."
+);
+addChoice(question, "A. quotes", true);
+addChoice(question, "B. curly brackets", false);
+addChoice(question, "C. parenthesis", false);
+addChoice(question, "D. squarebrackets", false);
+quiz.push(question);
+// create count for question number
+var qCount = 0;
+// initialize quize for the first time
+displayQuiz(quiz[qCount]);
+// create event lisener for quiz
 answersContainer.addEventListener("submit", function () {
   answerValidate(quiz[0], event);
+  removeAllChildren();
+  qCount++;
+  debugger;
+  displayQuiz(quiz[qCount]);
 });

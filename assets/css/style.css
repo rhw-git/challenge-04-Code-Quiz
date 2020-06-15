@@ -67,6 +67,7 @@ main {
   margin: 3px;
   background: var(--secondary);
   color: #fff;
+  text-align: left;
 }
 .choice-validation {
   width: 30%;
