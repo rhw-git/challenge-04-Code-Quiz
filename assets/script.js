@@ -42,20 +42,21 @@ var displayChoice = function (qA) {
   }
 };
 // start countdown timer
-var countdownTimer = function () {
-  var timeLeft = 100;
+var countdownTimer = function (timeLeft) {
   // update every seconds
   setInterval(function () {
-    timer.innerHTML = "<p class = 'timer'> Time: " + timeLeft + "</p>";
-    timeLeft = timeLeft - 1;
+    if (qCount < quiz.length) {
+      timer.innerHTML = "<p class = 'timer'> Time: " + timeLeft + "</p>";
+      localStorage.setItem("timeLeft", timeLeft);
+      timeLeft = timeLeft - 1;
+    }
   }, 1000);
+  return;
 };
 // display quize
 var displayQuiz = function (qA) {
   displayPrompt(qA);
   displayChoice(qA);
-  //countdown timer starts
-  countdownTimer();
 };
 // validate answer
 var answerValidate = function (qA, event) {
@@ -67,12 +68,14 @@ var answerValidate = function (qA, event) {
     validateCorrect.className = "choice-validation";
     validateCorrect.textContent = "Correct";
     validateAnswerContainer.appendChild(validateCorrect);
+    console.log(timer.innerHTML);
   } else {
     // display incorrect
     var validateIncorrect = document.createElement("p");
     validateIncorrect.className = "choice-validation";
     validateIncorrect.textContent = "Wrong";
     validateAnswerContainer.appendChild(validateIncorrect);
+    console.log(timer.innerHTML);
   }
 };
 // remote all children
@@ -93,6 +96,7 @@ function nextQA(timeGap) {
       displayQuiz(quiz[qCount]);
     }
   }, timeGap);
+  return;
 }
 // create quiz
 var quiz = [];
@@ -113,6 +117,8 @@ addChoice(question, "B. curly brackets", false);
 addChoice(question, "C. parenthesis", false);
 addChoice(question, "D. squarebrackets", false);
 quiz.push(question);
+// initialize countDown
+countdownTimer(100);
 // create count for question number
 var qCount = 0;
 // initialize quize for the first time
@@ -121,4 +127,5 @@ displayQuiz(quiz[qCount]);
 answersContainer.addEventListener("submit", function () {
   answerValidate(quiz[0], event);
   nextQA(3 * 1000);
+  return;
 });
