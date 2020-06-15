@@ -52,10 +52,15 @@ main {
   justify-content: space-between;
   align-content: center;
 }
-h1.question {
+.questions h1 {
   font-size: 2rem;
 }
+.choices-container {
+  display: flex;
+  flex-flow: column;
+}
 .choices-btn {
+  width: 35%;
   font-size: 1.4rem;
   padding: 5px 7px;
   border-radius: 10px;
