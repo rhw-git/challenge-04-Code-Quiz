@@ -139,5 +139,5 @@ displayQuiz(quiz[qCount]);
 answersContainer.addEventListener("submit", function () {
   answerValidate(quiz[qCount], event);
   nextQA(2 * 1000);
-  nextPage(1 * 1000);
+  nextPage(5 * 1000);
 });
