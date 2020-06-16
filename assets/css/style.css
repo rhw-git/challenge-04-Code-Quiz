@@ -78,6 +78,12 @@ main {
   border-top: 1px solid var(--tertiary);
   color: var(--tertiary);
 }
+button:hover {
+  background-color: var(--primary);
+}
+link:hover {
+  background-color: var(--primary);
+}
 /*------------------------------------------------*/
 /* main style for index and end page */
 main.center {
