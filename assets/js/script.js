@@ -1,8 +1,10 @@
-// selection all the variable
+// selection all the variable from HTML
+//----------------------------all variable for main HTML-----------------------//
 var timer = document.querySelector(".timer");
 var questionsContainer = document.querySelector(".questions-container");
 var answersContainer = document.querySelector(".choices-container");
 var validateAnswerContainer = document.querySelector(".validate-container");
+//----------------------------all variable for save-score HTML-----------------------//
 // define fuction to create QA object
 var createQA = function (promptText) {
   // create undefined objects to contain Q and A elements
@@ -71,14 +73,14 @@ var answerValidate = function (qA, event) {
     validateCorrect.className = "choice-validation";
     validateCorrect.textContent = "Correct";
     validateAnswerContainer.appendChild(validateCorrect);
-    console.log(timer.innerHTML);
   } else {
     // display incorrect
     var validateIncorrect = document.createElement("p");
     validateIncorrect.className = "choice-validation";
     validateIncorrect.textContent = "Wrong";
     validateAnswerContainer.appendChild(validateIncorrect);
-    console.log(timer.innerHTML);
+    incorrectAnswerNum++;
+    localStorage.setItem("number of incorrect answer", incorrectAnswerNum);
   }
 };
 // remote all children
@@ -106,10 +108,20 @@ var nextPage = function (timegap) {
   event.preventDefault();
   setTimeout(function () {
     if (qCount === quiz.length) {
-      window.location.href = "last-page.html";
+      window.location.href = "save-score.html";
     }
   }, timegap);
 };
+// calculate score. score = (timeLift -10*(number of incorrect answer) )
+var calculateScore = function () {
+  var timeLeft = localStorage.getItem("record");
+  var incorrectCount = localStorage.getItem("number of incorrect answer");
+  var score = timeLeft - 10 * incorrectCount;
+  localStorage.setItem("current user score", score);
+};
+// display current users's score
+var displayScore = function () {};
+//----------------------------all functions run on the main page-----------------------//
 // create quiz
 var quiz = [];
 var question;
@@ -133,11 +145,15 @@ quiz.push(question);
 countdownTimer(100);
 // create count for question number
 var qCount = 0;
+// create count for increate number
+var incorrectAnswerNum = 0;
 // initialize quize for the first time
 displayQuiz(quiz[qCount]);
 // create event lisener for quiz
 answersContainer.addEventListener("submit", function () {
   answerValidate(quiz[qCount], event);
   nextQA(2 * 1000);
-  nextPage(5 * 1000);
+  nextPage(2 * 1000);
 });
+//----------------------------all functions run on the save score page-----------------------//
+calculateScore();
