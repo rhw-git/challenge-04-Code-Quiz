@@ -130,7 +130,7 @@ question = createQA("In javaScript, arry can be used to store:");
 addChoice(question, "A. numbers and strings", false);
 addChoice(question, "B. other arrys", false);
 addChoice(question, "C. boolean", false);
-addChoice(question, "D. all of the above", false);
+addChoice(question, "D. all of the above", true);
 quiz.push(question);
 question = createQA(
   "The condition in an if/else statement is enclosed with _____."
