@@ -121,19 +121,23 @@ var nextPage = function (timegap) {
 var quiz = [];
 var question;
 question = createQA("Commonly use data type do not include:");
-addChoice(question, "A", true);
-addChoice(question, "B", false);
+addChoice(question, "A. string", false);
+addChoice(question, "B. booleans", false);
+addChoice(question, "C. alerts", true);
+addChoice(question, "D. number", false);
 quiz.push(question);
 question = createQA("In javaScript, arry can be used to store:");
-addChoice(question, "A", true);
-addChoice(question, "B", false);
+addChoice(question, "A. numbers and strings", false);
+addChoice(question, "B. other arrys", false);
+addChoice(question, "C. boolean", false);
+addChoice(question, "D. all of the above", false);
 quiz.push(question);
 question = createQA(
   "The condition in an if/else statement is enclosed with _____."
 );
-addChoice(question, "A. quotes", true);
+addChoice(question, "A. quotes", false);
 addChoice(question, "B. curly brackets", false);
-addChoice(question, "C. parenthesis", false);
+addChoice(question, "C. parenthesis", true);
 addChoice(question, "D. squarebrackets", false);
 quiz.push(question);
 // initialize countDown
