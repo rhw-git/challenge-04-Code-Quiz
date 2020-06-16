@@ -46,10 +46,14 @@ var displayChoice = function (qA) {
 var countdownTimer = function (timeLeft) {
   // update every seconds
   setInterval(function () {
-    if (qCount < quiz.length) {
+    if (qCount < quiz.length && timeLeft > 0) {
       timer.innerHTML = "<p class = 'timer'> Time: " + timeLeft + "</p>";
       localStorage.setItem("record", timeLeft);
       timeLeft = timeLeft - 1;
+      return;
+    } else if (timeLeft <= 0) {
+      timer.innerHTML = "<p class = 'timer'> Time: 0</p>";
+      localStorage.setItem("record", 0);
       return;
     } else {
       return;
