@@ -12,7 +12,7 @@
 
 ## Website
 
-https://rhw-git.github.io/challenge-03_friendly-parakeet/.
+https://rhw-git.github.io/challenge-04-Code-Quiz/.
 
 ## Contribution
 
