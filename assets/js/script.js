@@ -65,6 +65,7 @@ var displayQuiz = function (qA) {
 // validate answer
 var answerValidate = function (qA, event) {
   event.preventDefault();
+  localStorage.setItem("number of incorrect answer", 0);
   var answer = event.submitter.getAttribute("choice-id");
   if (parseInt(answer) === qA.correctAnswer) {
     // display correct
