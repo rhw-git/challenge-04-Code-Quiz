@@ -101,6 +101,15 @@ function nextQA(timeGap) {
   }, timeGap);
   return;
 }
+// jump to next page
+var nextPage = function (timegap) {
+  event.preventDefault();
+  setTimeout(function () {
+    if (qCount === quiz.length) {
+      window.location.href = "last-page.html";
+    }
+  }, timegap);
+};
 // create quiz
 var quiz = [];
 var question;
@@ -128,8 +137,7 @@ var qCount = 0;
 displayQuiz(quiz[qCount]);
 // create event lisener for quiz
 answersContainer.addEventListener("submit", function () {
-  // ".button".prop("disabled", true);
-  answerValidate(quiz[0], event);
-  nextQA(3 * 1000);
-  return;
+  answerValidate(quiz[qCount], event);
+  nextQA(2 * 1000);
+  nextPage(1 * 1000);
 });
