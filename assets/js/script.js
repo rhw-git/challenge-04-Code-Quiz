@@ -4,7 +4,6 @@ var timer = document.querySelector(".timer");
 var questionsContainer = document.querySelector(".questions-container");
 var answersContainer = document.querySelector(".choices-container");
 var validateAnswerContainer = document.querySelector(".validate-container");
-//----------------------------all variable for save-score HTML-----------------------//
 // define fuction to create QA object
 var createQA = function (promptText) {
   // create undefined objects to contain Q and A elements
@@ -112,15 +111,6 @@ var nextPage = function (timegap) {
     }
   }, timegap);
 };
-// calculate score. score = (timeLift -10*(number of incorrect answer) )
-var calculateScore = function () {
-  var timeLeft = localStorage.getItem("record");
-  var incorrectCount = localStorage.getItem("number of incorrect answer");
-  var score = timeLeft - 10 * incorrectCount;
-  localStorage.setItem("current user score", score);
-};
-// display current users's score
-var displayScore = function () {};
 //----------------------------all functions run on the main page-----------------------//
 // create quiz
 var quiz = [];
@@ -155,5 +145,3 @@ answersContainer.addEventListener("submit", function () {
   nextQA(2 * 1000);
   nextPage(2 * 1000);
 });
-//----------------------------all functions run on the save score page-----------------------//
-calculateScore();

@@ -102,7 +102,7 @@ main.center {
   margin: 0px;
 }
 /*------------------------------------------------*/
-/* main style for last page and end page */
+/* main style for save-score page */
 .main-content-score {
   font-size: 1.4rem;
 }
@@ -113,7 +113,7 @@ form.main-content-score {
   padding: 0px 15px 30px 0px;
   height: fit-content;
 }
-#participate-initial {
+#participant-initial {
   width: 200px;
   font-size: 1.4rem;
   padding: 5px 7px;
@@ -137,6 +137,22 @@ form.main-content-score {
   justify-content: space-between;
   align-items: center;
   text-align: center;
+}
+/*------------------------------------------------*/
+/* main style for report-high-score page */
+#select-next-step {
+  padding-left: 0px;
+  margin: 0px;
+}
+#go-back-btn,
+#clear-score-btn {
+  width: fit-content;
+  font-size: 1.4rem;
+  padding: 5px 7px;
+  border-radius: 10px;
+  margin: 5px 0px;
+  background: var(--secondary);
+  color: #fff;
 }
 
 /* main style ends*/
