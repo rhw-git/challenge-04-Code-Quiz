@@ -47,8 +47,11 @@ var countdownTimer = function (timeLeft) {
   setInterval(function () {
     if (qCount < quiz.length) {
       timer.innerHTML = "<p class = 'timer'> Time: " + timeLeft + "</p>";
-      localStorage.setItem("timeLeft", timeLeft);
+      localStorage.setItem("record", timeLeft);
       timeLeft = timeLeft - 1;
+      return;
+    } else {
+      return;
     }
   }, 1000);
   return;

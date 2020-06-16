@@ -54,7 +54,7 @@ main {
   align-content: center;
 }
 .questions h1 {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 .choices-container {
   display: flex;
@@ -100,4 +100,43 @@ main.center {
   padding: 5px 7px;
   border-radius: 10px;
   margin: 0px;
+}
+/*------------------------------------------------*/
+/* main style for last page and end page */
+.main-content {
+  font-size: 1.4rem;
+}
+h1.main-content {
+  font-size: 1.5rem;
+}
+form.main-content {
+  padding: 0px 15px 30px 0px;
+  height: fit-content;
+}
+#participate-initial {
+  width: 200px;
+  font-size: 1.4rem;
+  padding: 5px 7px;
+  border-radius: 10px;
+  margin: 5px 0px;
+}
+#submit-score-btn {
+  width: fit-content;
+  font-size: 1.4rem;
+  padding: 5px 7px;
+  border-radius: 10px;
+  margin: 5px 0px;
+  background: var(--secondary);
+  color: #fff;
+}
+form.main-content {
+  width: 55%;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
 /* main style ends*/
