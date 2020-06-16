@@ -128,6 +128,7 @@ var qCount = 0;
 displayQuiz(quiz[qCount]);
 // create event lisener for quiz
 answersContainer.addEventListener("submit", function () {
+  // ".button".prop("disabled", true);
   answerValidate(quiz[0], event);
   nextQA(3 * 1000);
   return;
