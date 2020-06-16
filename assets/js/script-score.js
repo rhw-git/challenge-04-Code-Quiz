@@ -23,7 +23,7 @@ var displayScore = function (score) {
 // after submit form, store the user initial and user score
 var storeUserScore = function () {
   var storeUserInitial = document.getElementById("participant-initial").value;
-  var storeUserScore = localStorage.getItem("record");
+  var storeUserScore = localStorage.getItem("current user score");
   var storeKey = "quizTaker: " + storeUserInitial;
   localStorage.setItem(storeKey, storeUserScore);
 };
